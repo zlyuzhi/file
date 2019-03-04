@@ -1,0 +1,65 @@
+入口：https://news.sina.cn.com/
+
+目标：
+	将所有对应的大类的标题和urls；
+	# //div[contains(@class, 'nav-mod-1')]/ul//b/text()
+	# //div[contains(@class, 'nav-mod-1')]/ul//b/../../a/@href
+
+   uls
+   for ul in uls
+   		parent_title = .ul/li[1]/b/text()
+   		lis = ul.xpath(.//li)
+   		for li in lis[1:] 
+   
+
+
+	小类的标题的和urls;
+	# //div[contains(@class, 'nav-mod-1')]/ul/li[position()>1]/a/text()
+	# //div[contains(@class, 'nav-mod-1')]/ul/li[position()>1]/a/@href
+
+	子链接url;
+	# //div[@class='feed-card-item']/h2/a/@href
+
+	文章名以及文章内容
+	文章名：//h1[@class='main-title']/text()
+	内容：//div[@class='article']//p/text()
+	文章发表时间：//span[@class='date']
+
+
+	保存数据库
+
+
+
+itmes.py
+
+import scrapy
+
+class SinaItem(scrapy.Item):
+	# 大类的标题和url
+	
+	parent_title = scrapy.Field() 
+	
+	parent_urls = scrapy.Field()
+
+	# 小类的标题和url
+	
+	sub_title = scrapy.Field() 
+	
+	sub_urls = scrapy.Field() 
+
+	# 小类目录存储路径
+	sub_file_name = scrapy.Field() 
+
+	# 小类下的链接
+	son_urls = scrapy.Field() 
+
+	# 文章标题和内容
+	head = scrapy.Field() 
+	content = scrapy.Field()
+
+item['parent_title'] = meta_1['parent_title']
+item['parent_urls'] = meta_1['']
+item['sub_title'] = meta_1['']
+item['sub_urls'] = meta_1['']
+item['sub_file_name'] = meta_1['']
+item['son_urls'] = meta_1['']
